@@ -79,3 +79,5 @@ To control the lock, you'll need to modify the internal registery.
 | ------- | ------- |
 | 0 | 0 = Lock unpowered, Not 0 = Lock Powered |
 | 1 | Slave ID (accepts number between 1-247) |
+
+The provided node-red flow can Lock, Unlock and Unlock for x seconds.
