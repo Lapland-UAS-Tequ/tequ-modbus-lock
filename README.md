@@ -1,8 +1,11 @@
 # tequ-modbus-lock
 Seeed XIAO RP2040 compatible lock controlled via Modbus.
 
+## NOTE! This code stores data to the onboard EEPROM, to store the devices Slave ID. The writing has been programmed so that it shouldn't destroy the EEPROM, since it has a limited write amount.
+
 ## Requirements
 - [Arduino IDE](https://www.arduino.cc/en/software)
+- [Node-Red](https://nodered.org/docs/getting-started/)
 - [Seeed XIAO RP2040](https://www.seeedstudio.com/XIAO-RP2040-v1-0-p-5026.html) (you can use other microcontrollers, but you may have to modify the code and connections)
 - [12v Solenoid lock](https://www.sparkfun.com/products/15324), or similar
 - [Grove Relay](https://www.seeedstudio.com/Grove-Relay.html)
@@ -54,3 +57,25 @@ This table shows the data pin connections, some power connections have been left
 ## Uploading code
 
 You'll need to install the required Modbus libraries and the XIAO board to upload the code.
+
+### Installing board libraries
+1. Open the Arduino IDE
+2. From the tool menu select Tools --> Board --> Boards Manager
+3. In the new windows search for "XIAO RP2040" and install version 1.9.3 (At the time of writing, the latest version were not working properly)
+
+### Installing a Modbus library
+You'll need the Modbus library that you can download from [here](https://github.com/smarmengol/Modbus-Master-Slave-for-Arduino), install it via the instructions there and once installed goto next step.
+
+### Uploading Code
+If everything has worked so far, you should just be able to upload the code, if you are experiencing errors, check these:
+- What XIAO RP2040 Board version do you have? (Recommended: v1.9.1)
+- Is the XIAO connected to USB?
+- Is the XIAO getting power? (Red LED should be on)
+- Is the device in Bootloader mode? (Press and hold the B button and the press the R button, you should see RP1-RP2 in file manager)
+
+### Communication
+To control the lock, you'll need to modify the internal registery.
+| Address | Purpose |
+| ------- | ------- |
+| 0 | 0 = Lock unpowered, Not 0 = Lock Powered |
+| 1 | Slave ID (accepts number between 1-247) |
