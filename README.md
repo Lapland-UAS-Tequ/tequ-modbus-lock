@@ -117,3 +117,13 @@ node-red-restart
 2. Press the magnifying glass icon next to Serial port and select which port your XIAO is connected to, you can check this in Device Manager on Windows.
 3. Change the Baud rate here if you have modified it in the XIAO code.
 4. Finally press Update, Done and deploy
+
+## Possbile issues and how to fix.
+We already showed a few fixes for issues related to uploading code, but here are a few which can also arise.
+
+### Node-Red debug, modbus reports something in red and yellow.
+Your A and B connections may be mixed up (refer to "Connecting the USB to RS485 adapter")
+
+Also the Grove RS485 RX should go to the XIAO's TX and vice versa. Not RX to RX and TX to TX.
+
+Have you selected the right server in the Modbus server configuration. To check, just double click any read/write node and edit the server with the pen icon. Click on the magnifying glass to see what port your device is connected to. If none appear, try to reboot your device or connect the Adapter to another port. If none still appear you may need to run `sudo raspi-config` if on rpi and check whether the Serial port is enabled, you might also want to try out changing the "Serial1" in the slave.ino to a different serial port, such as "Serial".
