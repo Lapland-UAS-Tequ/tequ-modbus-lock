@@ -19,11 +19,14 @@ This table shows the data pin connections, some power connections have been left
 
 ### Without Grove Shield
 
+![XIAO Pinout](https://files.seeedstudio.com/wiki/XIAO-RP2040/img/xinpin.jpg)
+
 | Part | Part Pin | Pin to connect |
 | ---- | -------- | -------------- |
 | Grove RS485 | TX | XIAO RX |
 | Grove RS485 | RX | XIAO TX |
-| Grove Relay | - | D8 (pins 8 and 9) |
+| Grove Relay | NC | D2 |
+| Grove Relay | SIG | D3 |
 | 12v Lock | Red | Relay Green part hole|
 | 12v Lock | Black | GND |
 | Grove Relay | Other Green part hole | VIN +12V |
@@ -34,10 +37,12 @@ This table shows the data pin connections, some power connections have been left
 
 ### With Grove Shield
 
+![XIAO Pinout](https://files.seeedstudio.com/wiki/Grove-Shield-for-Seeeduino-XIAO/img/pinout.png)
+
 | Part | Pin to connect on shield |
 | ---- | -------------- |
 | Grove RS485 | TX and RX |
-| Grove Relay | D3 |
+| Grove Relay | D2 |
 | 12v Lock | Red | Relay Green part |
 | 12v Lock | Black | GND |
 | Grove Relay | Other Green part hole | VIN +12V |
@@ -45,3 +50,7 @@ This table shows the data pin connections, some power connections have been left
 | Converter | GND | 12v Input - |
 | Converter | VOUT | XIAO 5V |
 | Converter | GND | GND |
+
+## Uploading code
+
+You'll need to install the required Modbus libraries and the XIAO board to upload the code.
