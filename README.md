@@ -1,7 +1,7 @@
 # tequ-modbus-lock
 Seeed XIAO RP2040 compatible lock controlled via Modbus.
 
-## NOTE! This code stores data to the onboard EEPROM, to store the devices Slave ID. The writing has been programmed so that it shouldn't destroy the EEPROM, since it has a limited write amount.
+## NOTE! This code stores data to the onboard EEPROM, to store the devices Slave ID. If your device does not have EEPROM, you may need to use Flash EEPROM or other alternatives.
 
 ## Requirements
 - [Arduino IDE](https://www.arduino.cc/en/software)
