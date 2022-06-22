@@ -1,0 +1,420 @@
+[
+    {
+        "id": "8a487f74d116f3ba",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "fd5a37e2ba610ec1",
+        "type": "inject",
+        "z": "8a487f74d116f3ba",
+        "name": "Unlock",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[1]",
+        "payloadType": "json",
+        "x": 190,
+        "y": 140,
+        "wires": [
+            [
+                "ee303dd6c70d0e0c"
+            ]
+        ]
+    },
+    {
+        "id": "ee303dd6c70d0e0c",
+        "type": "modbus-write",
+        "z": "8a487f74d116f3ba",
+        "name": "",
+        "showStatusActivities": true,
+        "showErrors": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "0",
+        "quantity": "1",
+        "server": "75beb9d9.444ee",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 440,
+        "y": 160,
+        "wires": [
+            [
+                "a559c9487a4304a1"
+            ],
+            [
+                "75cfaba06c169762"
+            ]
+        ]
+    },
+    {
+        "id": "a559c9487a4304a1",
+        "type": "debug",
+        "z": "8a487f74d116f3ba",
+        "name": "Top",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "75cfaba06c169762",
+        "type": "debug",
+        "z": "8a487f74d116f3ba",
+        "name": "Bottom",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "354e5e6fe0540883",
+        "type": "inject",
+        "z": "8a487f74d116f3ba",
+        "name": "Lock",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[0]",
+        "payloadType": "json",
+        "x": 190,
+        "y": 180,
+        "wires": [
+            [
+                "ee303dd6c70d0e0c"
+            ]
+        ]
+    },
+    {
+        "id": "c7f53b6d60ccb668",
+        "type": "modbus-flex-getter",
+        "z": "8a487f74d116f3ba",
+        "name": "",
+        "showStatusActivities": true,
+        "showErrors": true,
+        "logIOActivities": false,
+        "server": "75beb9d9.444ee",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 610,
+        "y": 440,
+        "wires": [
+            [
+                "5eea0deb5d157a7c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "cc4d8433ca50cce4",
+        "type": "function",
+        "z": "8a487f74d116f3ba",
+        "name": "",
+        "func": "msg.payload = { value: msg.payload, 'fc': 4, 'unitid': 1, 'address': 0 , 'quantity': 2 } \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 440,
+        "wires": [
+            [
+                "c7f53b6d60ccb668"
+            ]
+        ]
+    },
+    {
+        "id": "87ab887f93fbbe57",
+        "type": "inject",
+        "z": "8a487f74d116f3ba",
+        "name": "Get current registery",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 230,
+        "y": 440,
+        "wires": [
+            [
+                "cc4d8433ca50cce4"
+            ]
+        ]
+    },
+    {
+        "id": "5eea0deb5d157a7c",
+        "type": "debug",
+        "z": "8a487f74d116f3ba",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "bdb2c4aa054b83cb",
+        "type": "modbus-flex-write",
+        "z": "8a487f74d116f3ba",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "server": "75beb9d9.444ee",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 650,
+        "y": 240,
+        "wires": [
+            [
+                "215606380b2e3054"
+            ],
+            [
+                "5de3bd1c3c4fe59d",
+                "392ab556ac8d1e8a"
+            ]
+        ]
+    },
+    {
+        "id": "215606380b2e3054",
+        "type": "debug",
+        "z": "8a487f74d116f3ba",
+        "name": "1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "34b9b94c85a49823",
+        "type": "inject",
+        "z": "8a487f74d116f3ba",
+        "name": "Keep unlocked for x seconds",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "2000",
+        "payloadType": "num",
+        "x": 260,
+        "y": 240,
+        "wires": [
+            [
+                "4c39b6c97b39e9a5"
+            ]
+        ]
+    },
+    {
+        "id": "5de3bd1c3c4fe59d",
+        "type": "debug",
+        "z": "8a487f74d116f3ba",
+        "name": "2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "4c39b6c97b39e9a5",
+        "type": "function",
+        "z": "8a487f74d116f3ba",
+        "name": "",
+        "func": "setTimeout(function(){\n    msg.payload = { value: 0, 'fc': 6, 'unitid': 1, 'address': 0 , 'quantity': 1} \n    node.send(msg);\n}, msg.payload);  \n\nmsg.payload = { value: 1, 'fc': 6, 'unitid': 1, 'address': 0 , 'quantity': 1} \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 240,
+        "wires": [
+            [
+                "bdb2c4aa054b83cb"
+            ]
+        ]
+    },
+    {
+        "id": "392ab556ac8d1e8a",
+        "type": "modbus-response",
+        "z": "8a487f74d116f3ba",
+        "name": "",
+        "registerShowMax": 20,
+        "x": 870,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "fa947433c4f18129",
+        "type": "modbus-write",
+        "z": "8a487f74d116f3ba",
+        "name": "",
+        "showStatusActivities": true,
+        "showErrors": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "1",
+        "quantity": "1",
+        "server": "75beb9d9.444ee",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 460,
+        "y": 580,
+        "wires": [
+            [
+                "60ebd66bc2d8592d"
+            ],
+            [
+                "e68440a847c74a99"
+            ]
+        ]
+    },
+    {
+        "id": "c55e09e401b264fb",
+        "type": "inject",
+        "z": "8a487f74d116f3ba",
+        "name": "Change ID",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[248]",
+        "payloadType": "json",
+        "x": 280,
+        "y": 580,
+        "wires": [
+            [
+                "fa947433c4f18129"
+            ]
+        ]
+    },
+    {
+        "id": "60ebd66bc2d8592d",
+        "type": "debug",
+        "z": "8a487f74d116f3ba",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "e68440a847c74a99",
+        "type": "debug",
+        "z": "8a487f74d116f3ba",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "75beb9d9.444ee",
+        "type": "modbus-client",
+        "name": "",
+        "clienttype": "simpleser",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "tcpHost": "127.0.0.1",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "COM4",
+        "serialType": "RTU",
+        "serialBaudrate": "115200",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "",
+        "unit_id": "1",
+        "commandDelay": "10",
+        "clientTimeout": "100",
+        "reconnectOnTimeout": false,
+        "reconnectTimeout": "",
+        "parallelUnitIdsAllowed": false
+    }
+]
