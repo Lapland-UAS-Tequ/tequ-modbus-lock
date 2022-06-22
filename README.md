@@ -73,7 +73,7 @@ If everything has worked so far, you should just be able to upload the code, if 
 - Is the XIAO getting power? (Red LED should be on)
 - Is the device in Bootloader mode? (Press and hold the B button and the press the R button, you should see RP1-RP2 in file manager)
 
-### Communication
+## Communication
 To control the lock, you'll need to modify the internal registery.
 | Address | Purpose |
 | ------- | ------- |
@@ -81,3 +81,20 @@ To control the lock, you'll need to modify the internal registery.
 | 1 | Slave ID (accepts number between 1-247) |
 
 The provided node-red flow can Lock, Unlock and Unlock for x seconds.
+
+### To use the flow, you'll need to install a Modbus module. You can either download it via CLI:
+
+```
+cd .node-red
+npm install node-red-contrib-modbus
+node-red-restart
+```
+### Or you can install it via the node-red interface:
+1. Select the hamburger (3 horizontal lines) in the top right corner
+2. Click on Manage palette
+3. Select Install
+4. Search for "node-red-contrib-modbus"
+5. Click on install
+
+### Importing the flow
+To import our flow, press Ctrl + I in the node-red interface and paste
