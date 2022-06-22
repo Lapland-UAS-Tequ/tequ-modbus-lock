@@ -11,6 +11,7 @@ Seeed XIAO RP2040 compatible lock controlled via Modbus.
 - [Grove Relay](https://www.seeedstudio.com/Grove-Relay.html)
 - [Grove RS485](https://www.seeedstudio.com/Grove-RS485-p-2924.html)
 - [12v to 5v converter](https://www.sparkfun.com/products/15208) (other converters can be used)
+- [USB to RS485 Adapter](https://www.dfrobot.com/product-1029.html)
 - 12v power supply
 - (Optional: [Grove Shield](https://www.seeedstudio.com/Grove-Shield-for-Seeeduino-XIAO-p-4621.html))
 
@@ -54,6 +55,15 @@ This table shows the data pin connections, some power connections have been left
 | Converter | VOUT | XIAO 5V |
 | Converter | GND | GND |
 
+### Connecting the USB to RS485 adapter
+
+| Adapter PIN | Grove RS485 |
+| ----------- | ----------- |
+| B485A | A |
+| B485B | B |
+| GND | GND |
+5V is not required, if you power the adapter via its usb port.
+
 ## Uploading code
 
 You'll need to install the required Modbus libraries and the XIAO board to upload the code.
@@ -74,6 +84,7 @@ If everything has worked so far, you should just be able to upload the code, if 
 - Is the device in Bootloader mode? (Press and hold the B button and the press the R button, you should see RP1-RP2 in file manager)
 
 ## Communication
+Communication is done by sending commands from node-red via USB to RS485 adapter to the XIAO. 
 To control the lock, you'll need to modify the internal registery.
 | Address | Purpose |
 | ------- | ------- |
