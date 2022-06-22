@@ -100,3 +100,9 @@ node-red-restart
 1. Download the provided flows.json and goto your Node-Red interface.
 2. Press CTRL + I and "select a file to import"
 3. Then just open the flows.json file.
+
+### Using the flow
+1. To use the flow, you will need to double click on the Modbus Write node and click the edit button next to the server dropwdown.
+2. Press the magnifying glass icon next to Serial port and select which port your XIAO is connected to, you can check this in Device Manager on Windows.
+3. Change the Baud rate here if you have modified it in the XIAO code.
+4. Finally press Update, Done and deploy
