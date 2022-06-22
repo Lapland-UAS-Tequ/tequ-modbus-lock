@@ -97,4 +97,6 @@ node-red-restart
 5. Click on install
 
 ### Importing the flow
-To import our flow, press Ctrl + I in the node-red interface and paste
+1. Download the provided flows.json and goto your Node-Red interface.
+2. Press CTRL + I and "select a file to import"
+3. Then just open the flows.json file.
