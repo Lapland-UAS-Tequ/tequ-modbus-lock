@@ -132,3 +132,6 @@ A CRC error may mean that your read node settings may be wrong.
 
 ### "Error: Modbus exception 2: Illegal data address (register not supported by device)"
 You are reading data from an address that doesn't exist, the slave.ino file only has two addresses, 0 and 1.
+
+## Sources
+Images: https://wiki.seeedstudio.com/Seeeduino-XIAO/
