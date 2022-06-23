@@ -100,7 +100,7 @@ cd .node-red
 npm install node-red-contrib-modbus
 node-red-restart
 ```
-### Or you can install it via the node-red interface:
+### Or with the node-red interface:
 1. Select the hamburger (3 horizontal lines) in the top right corner
 2. Click on Manage palette
 3. Select Install
@@ -121,9 +121,14 @@ node-red-restart
 ## Possbile issues and how to fix.
 We already showed a few fixes for issues related to uploading code, but here are a few which can also arise.
 
-### Node-Red debug, modbus reports something in red and yellow.
-Your A and B connections may be mixed up (refer to "Connecting the USB to RS485 adapter")
+### "Error: Timed out"
+Try switching the A and B cable positions and the TX and RX connections.
+You may also have the wrong port selected, change it from the server dropdown in any modbus read/write node.
+If you are using a different microcontroller, you may need to change the "Serial1" in the slave.ino file into a different port, such as: "Serial"
+Also, if you are on a Raspberry PI, check that the Serial port is active in the raspiconfig.
 
-Also the Grove RS485 RX should go to the XIAO's TX and vice versa. Not RX to RX and TX to TX.
+### "CRC Error"
+A CRC error may mean that your read node settings may be wrong.
 
-Have you selected the right server in the Modbus server configuration. To check, just double click any read/write node and edit the server with the pen icon. Click on the magnifying glass to see what port your device is connected to. If none appear, try to reboot your device or connect the Adapter to another port. If none still appear you may need to run `sudo raspi-config` if on rpi and check whether the Serial port is enabled, you might also want to try out changing the "Serial1" in the slave.ino to a different serial port, such as "Serial".
+### "Error: Modbus exception 2: Illegal data address (register not supported by device)"
+You are reading data from an address that doesn't exist, the slave.ino file only has two addresses, 0 and 1.
